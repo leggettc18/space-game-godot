@@ -9,6 +9,14 @@
 script = ExtResource( 1 )
 Laser = ExtResource( 3 )
 
+[node name="TextureRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="StartPosition" type="Position2D" parent="."]
 position = Vector2( 512, 700 )
 
@@ -19,7 +27,10 @@ wait_time = 2.0
 one_shot = true
 
 [node name="HUD" parent="." instance=ExtResource( 4 )]
+
+[node name="StarSpawnCooldown" type="Timer" parent="."]
 [connection signal="fire" from="Player" to="." method="_on_Player_fire"]
 [connection signal="hit" from="Player" to="." method="_on_Player_hit"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_StartTimer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="timeout" from="StarSpawnCooldown" to="." method="_on_StarSpawnCooldown_timeout"]
